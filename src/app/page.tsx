@@ -1,5 +1,5 @@
 import { ChatInterface } from '@/components/chat-interface';
-// import { FileUpload } from '@/components/file-upload';
+import { FileUpload } from '@/components/file-upload';
 
 export default function Home() {
   // In a real application, this would come from your authentication system
@@ -20,7 +20,7 @@ export default function Home() {
           <div className="grid gap-8 md:grid-cols-2">
             <div>
               <h2 className="text-2xl font-semibold mb-4">Knowledge Base</h2>
-              {/* <FileUpload storeId={demoStoreId} /> */}
+              <FileUpload storeId={demoStoreId} />
             </div>
             <div>
               <h2 className="text-2xl font-semibold mb-4">Chat Interface</h2>

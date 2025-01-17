@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { getGeminiEmbedding } from '@/lib/utils';
-// Import pdf-parse using require since it doesn't support ES modules
-const pdfParse = require('pdf-parse');
+import pdfParse from 'pdf-parse';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
