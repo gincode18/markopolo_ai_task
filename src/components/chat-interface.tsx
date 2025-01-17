@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -66,64 +67,110 @@ export function ChatInterface({ storeId, className = '' }: ChatInterfaceProps) {
   };
 
   return (
-    <Card className={`flex flex-col h-[500px] w-full max-w-md ${className}`}>
-      <div className="flex items-center gap-2 p-4 border-b">
-        <MessageCircle className="w-5 h-5" />
-        <h2 className="font-semibold">Store Assistant</h2>
-      </div>
+    <Card className={`flex flex-col h-[600px] w-full max-w-md ${className} overflow-hidden rounded-xl shadow-lg`}>
+      <motion.div 
+        className="flex items-center gap-2 p-4 border-b bg-black"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <MessageCircle className="w-6 h-6 text-white" />
+        <h2 className="font-semibold text-xl text-white">Store Assistant</h2>
+      </motion.div>
 
-      <ScrollArea className="flex-1 p-4" ref={scrollAreaRef}>
-        <div className="space-y-4">
+      <ScrollArea className="flex-1 p-4 bg-white" ref={scrollAreaRef}>
+        <AnimatePresence>
           {messages.map((message, index) => (
-            <div
+            <motion.div
               key={index}
-              className={`flex items-start gap-2 ${
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className={`flex items-start gap-2 mb-4 ${
                 message.role === 'assistant' ? 'flex-row' : 'flex-row-reverse'
               }`}
             >
               <div
-                className={`p-2 rounded-lg max-w-[80%] ${
+                className={`p-3 rounded-2xl max-w-[80%] shadow-md ${
                   message.role === 'assistant'
-                    ? 'bg-secondary'
-                    : 'bg-primary text-primary-foreground ml-auto'
+                    ? 'bg-white text-gray-800'
+                    : 'bg-black text-white ml-auto'
                 }`}
               >
                 <div className="flex items-center gap-2 mb-1">
                   {message.role === 'assistant' ? (
-                    <Bot className="w-4 h-4" />
+                    <Bot className="w-5 h-5" />
                   ) : (
-                    <User className="w-4 h-4" />
+                    <User className="w-5 h-5" />
                   )}
                   <span className="text-sm font-medium">
                     {message.role === 'assistant' ? 'Assistant' : 'You'}
                   </span>
                 </div>
-                <p className="text-sm">{message.content}</p>
+                <p className="text-sm leading-relaxed">{message.content}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-          {isLoading && (
-            <div className="flex items-center gap-2">
-              <Bot className="w-4 h-4" />
-              <span className="text-sm text-muted-foreground">Typing...</span>
-            </div>
-          )}
-        </div>
+        </AnimatePresence>
+        {isLoading && (
+          <motion.div 
+            className="flex items-center gap-2 text-gray-500"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <Bot className="w-5 h-5" />
+            <span className="text-sm">Typing</span>
+            <TypingAnimation />
+          </motion.div>
+        )}
       </ScrollArea>
 
-      <form onSubmit={handleSubmit} className="p-4 border-t">
+      <motion.form 
+        onSubmit={handleSubmit} 
+        className="p-4 border-t bg-white"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
         <div className="flex gap-2">
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Type your message..."
             disabled={isLoading}
+            className="flex-grow rounded-full border-gray-300 focus:border-gray-500 focus:ring focus:ring-gray-200 transition-all duration-300"
           />
-          <Button type="submit" disabled={isLoading}>
-            <Send className="w-4 h-4" />
+          <Button 
+            type="submit" 
+            disabled={isLoading}
+            className="rounded-full bg-black hover:bg-gray-800 transition-colors duration-300"
+          >
+            <Send className="w-5 h-5" />
           </Button>
         </div>
-      </form>
+      </motion.form>
     </Card>
   );
 }
+
+const TypingAnimation = () => (
+  <div className="flex space-x-1">
+    {[0, 1, 2].map((index) => (
+      <motion.div
+        key={index}
+        className="w-1.5 h-1.5 bg-black rounded-full"
+        initial={{ opacity: 0.2 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          repeat: Infinity,
+          repeatType: "reverse",
+          duration: 0.5,
+          delay: index * 0.15,
+        }}
+      />
+    ))}
+  </div>
+);
+
