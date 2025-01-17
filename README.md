@@ -18,7 +18,7 @@ Password : Spark@123*
 
 ## Video Demo
 
-[![Video Demo](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID)
+[Video Demo](https://youtu.be/qKoCsVzLUaU)
 
 Watch the video demo to see the chatbot in action and learn how to integrate it into your online store.
 
