@@ -55,7 +55,7 @@ CREATE POLICY "Users can insert into their store"
 
 -- Create similarity search function
 CREATE OR REPLACE FUNCTION match_documents(
-  query_embedding vector(1024),
+  query_embedding vector(768),
   match_threshold float,
   match_count int,
   store_id text

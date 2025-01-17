@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Integration Test</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.5;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .product {
+            border: 1px solid #e5e7eb;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #111827;
+        }
+        p {
+            color: #4b5563;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Demo Store</h1>
+        
+        <div class="product">
+            <h2>Product 1</h2>
+            <p>This is a sample product description. The chatbot can help answer questions about our products.</p>
+            <p>Price: $99.99</p>
+        </div>
+
+        <div class="product">
+            <h2>Product 2</h2>
+            <p>Another sample product. Try asking the chatbot about our shipping policies or product details.</p>
+            <p>Price: $149.99</p>
+        </div>
+    </div>
+
+    <!-- Chatbot Integration -->
+    <script src="http://localhost:3000/api/chatbot"></script>
+    <div id="store-chatbot" data-store-id="demo-store"></div>
+</body>
+</html>
