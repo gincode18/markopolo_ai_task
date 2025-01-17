@@ -30,7 +30,7 @@ export function AuthForm() {
           email,
           password,
           options: {
-            emailRedirectTo: `${window.location.origin}/auth/callback`,
+            emailRedirectTo: `${window.location.origin}`,
             data: {
               store_name: storeName // Store the store name in user metadata
             }
