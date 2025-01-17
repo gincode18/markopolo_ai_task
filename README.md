@@ -6,7 +6,13 @@ A Next.js application that provides businesses with an AI-powered chatbot for th
 
 ## Live Demo
 
-🔗 [View Live Demo](https://ecommerce-chatbot-demo.netlify.app)
+🔗 [View Live Demo](https://markopolo-ai-task.vercel.app/)
+
+---
+
+# TestUser
+Email : vishalkamboj9211@gmail.com
+Password : Spark@123*
 
 ---
 
@@ -86,8 +92,8 @@ SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd <repository-name>
+   git clone https://github.com/gincode18/markopolo_ai_task
+   cd markopolo_ai_task
    ```
 
 2. Install dependencies:
@@ -170,8 +176,8 @@ Features include:
 Add the following code to your website:
 
 ```html
-<script src="${process.env.NEXT_PUBLIC_APP_URL}/api/chatbot"></script>
 <div id="store-chatbot" data-store-id="YOUR_STORE_ID"></div>
+<script src="${process.env.NEXT_PUBLIC_APP_URL}/api/chatbot"></script>
 ```
 
 ---
