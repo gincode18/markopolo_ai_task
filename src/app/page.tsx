@@ -36,10 +36,9 @@ export default function Home() {
               </p>
               <pre className="p-4 bg-muted rounded-lg overflow-x-auto">
                 <code>{`<!-- Add this script to your HTML -->
+<div id="store-chatbot" data-store-id="YOUR_STORE_ID"></div>
 <script src="${process.env.NEXT_PUBLIC_APP_URL}/api/chatbot"></script>
-
-<!-- Add this div where you want the chatbot to be initialized -->
-<div id="store-chatbot" data-store-id="YOUR_STORE_ID"></div>`}</code>
+`}</code>
               </pre>
               <div className="space-y-2">
                 <p className="text-sm text-muted-foreground">
