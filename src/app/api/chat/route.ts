@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
-import { getGeminiEmbedding } from '@/lib/utils';
+import { getGeminiEmbedding } from '@/lib/gemini';
 import { getGeminiResponse } from '@/lib/gemini';
 
 const supabase = createClient(
@@ -31,9 +31,11 @@ export async function POST(req: Request) {
       console.error('Error fetching documents:', error);
       throw error;
     }
+    console.log(documents);
 
     // Combine relevant documents into context
     const context = documents?.map((doc:any) => doc.content).join('\n') || '';
+    console.log(context);
 
     // Generate response using Gemini
     const prompt = `You are a helpful AI assistant for an online store. Based on the following context, please answer the user's question. If you cannot find a relevant answer in the context, politely say so and offer to help with something else.
@@ -44,6 +46,9 @@ ${context}
 Question: ${lastMessage.content}
 
 Answer:`;
+
+  console.log(prompt);
+
 
     const response = await getGeminiResponse(prompt);
 
