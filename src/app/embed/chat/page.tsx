@@ -1,11 +1,9 @@
 import { ChatInterface } from '@/components/chat-interface';
 
-export default function EmbedChatPage({
-  searchParams,
-}: {
-  searchParams: { storeId: string };
-}) {
-  const { storeId } = searchParams;
+export default async function EmbedChatPage({ searchParams }: { searchParams: any }) {
+  // Resolve searchParams if it's a Promise
+  const resolvedParams = await searchParams;
+  const storeId = resolvedParams?.storeId;
 
   if (!storeId) {
     return (
